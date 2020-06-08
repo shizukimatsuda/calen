@@ -14,7 +14,7 @@ const handle = app.getRequestHandler()
 
 
 app
-    
+
     .prepare()
     .then(() => {
         const server = express();
@@ -24,8 +24,7 @@ app
             try {
                 let text = fs.readFileSync("./test.json", "utf8")
                 res.json(text)
-                console.log(text)
-            } catch(err) {
+            } catch (err) {
                 console.log(err)
             }
 
@@ -37,10 +36,24 @@ app
 
         server.post('/api/Addschedule', function (req, res) {
             try {
-                let date = JSON.stringify(req.body)
-                console.log(date)
-                fs.appendFileSync("./test.json", date)
+                let text = fs.readFileSync("./test.json", "utf8")
+                let textjson = JSON.parse(text)
+                let data = req.body
+                textjson.push(data)
+                let writedata = JSON.stringify(textjson)
+                fs.writeFileSync("./test.json", writedata, {flag: "w+"})
+                res.json(req.body)
             } catch (err) {
+                console.log(err)
+            }
+        })
+
+        server.all("/api/DeleteSchedules", function (req, res) {
+            try{
+                let text = fs.readFileSync("./test.json", "utf8")
+                res.json(text)
+                console.log(text)
+            } catch(err) {
                 console.log(err)
             }
         })
