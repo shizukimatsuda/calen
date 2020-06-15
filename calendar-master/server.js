@@ -41,7 +41,7 @@ app
                 let data = req.body
                 textjson.push(data)
                 let writedata = JSON.stringify(textjson)
-                fs.writeFileSync("./test.json", writedata, {flag: "w+"})
+                fs.writeFileSync("./test.json", writedata)
                 res.json(req.body)
             } catch (err) {
                 console.log(err)
@@ -49,10 +49,14 @@ app
         })
 
         server.all("/api/DeleteSchedules", function (req, res) {
-            try{
+            try {
                 let text = fs.readFileSync("./test.json", "utf8")
-                res.json(text)
-                console.log(text)
+                let textjson = JSON.parse(text)
+                let data = req.body
+                let filter = textjson.filter(s => s.id !== data.id)
+                let newdata = JSON.stringify(filter)
+                fs.writeFileSync("./test.json", newdata)
+                res.json(req.body)
             } catch(err) {
                 console.log(err)
             }

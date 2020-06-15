@@ -1,7 +1,7 @@
 import { schedulesSetLoading, schedulesFetchItem, schedulesAddItem, schedulesDeleteItem } from "./actions";
 import { get, post, deleteRequest } from "../../services/api";
 import { formatSchedule } from "../../services/schedule";
-import { ShortTextOutlined } from "@material-ui/icons";
+import { ShortTextOutlined, SpeakerNotesOutlined } from "@material-ui/icons";
 
 export const asyncSchedulesFetchItem = ({ month, year }) => async dispatch => {
     dispatch(schedulesSetLoading());
@@ -41,8 +41,11 @@ export const asyncSchedulesDeleteItem = id => async (dispatch, getState) => {
     dispatch(schedulesSetLoading());
     const currentSchedules = getState().schedules.items;
 
-    await deleteRequest(`DeleteSchedules/${id}`);
-
+    const body = { "id": id }
+    console.log(id)
+  
+    await deleteRequest(`DeleteSchedules`, body);
+  
     // 成功したらローカルのstateを削除
     const newSchedules = currentSchedules.filter(s => s.id !== id);
     dispatch(schedulesDeleteItem(newSchedules));

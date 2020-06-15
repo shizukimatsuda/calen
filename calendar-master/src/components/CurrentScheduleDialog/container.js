@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import AddScheduleDialog from "./presentation";
+import EditScheduleDialog from "../EditSchedule/presentation"
 
-import { currentScheduleCloseDialog } from "../../redux/currentSchedule/actions";
+import { currentScheduleCloseDialog, currentScheduleEditDialog, currentScheduleEditItem} from "../../redux/currentSchedule/actions";
 import { asyncSchedulesDeleteItem } from "../../redux/schedules/effects"
 
 const mapStateToProps = state => ({ schedule: state.currentSchedule });
@@ -11,10 +12,17 @@ const mapDispatchToProps = dispatch => ({
     dispatch(currentScheduleCloseDialog());
   },
 
-  deleteItem: id => {
-    dispatch(asyncSchedulesDeleteItem(id));
+  deleteItem: schedule => {
+    dispatch(asyncSchedulesDeleteItem(schedule));
     dispatch(currentScheduleCloseDialog());
-  }
+  },
+
+  editItem: schedule => {
+    dispatch(currentScheduleEditItem(schedule))
+    dispatch(currentScheduleEditDialog())
+  },
+
+
 });
 
 const mergeProps = (stateProps, dispatchProps) => ({
@@ -26,4 +34,4 @@ const mergeProps = (stateProps, dispatchProps) => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(AddScheduleDialog);
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(AddScheduleDialog,EditScheduleDialog);

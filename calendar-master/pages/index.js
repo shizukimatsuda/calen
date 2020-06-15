@@ -8,6 +8,7 @@ import currentScheduleReducer from "../src/redux/currentSchedule/reducer"
 import CalendarBoard from '../src/components/CalendarBoard/container'
 import Navigation from "../src/components/Navigation/container";
 import AddScheduleDialog from "../src/components/AddScheduleDialog/container";
+import EditScheduleDialog from "../src/components/EditSchedule/container"
 import CurrentScheduleDialog from "../src/components/CurrentScheduleDialog/container"
 import DayjsUtils from "@date-io/dayjs";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -41,6 +42,7 @@ const Index = () => (
                 <CalendarBoard />
                 <AddScheduleDialog />
                 <CurrentScheduleDialog />
+                <EditScheduleDialog />
             </MuiPickersUtilsProvider>
         </Provider>
     </div>

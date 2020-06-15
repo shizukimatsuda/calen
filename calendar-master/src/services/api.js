@@ -25,8 +25,8 @@ export const post = async (path, body) => {
     return result;
 };
 
-export const deleteRequest = async (path, id) => {
-    const options = { method: "DELETE" , id: JSON.stringify(id)};
+export const deleteRequest = async (path, body) => {
+    const options = { ...header, method: "POST" , body: JSON.stringify(body)};
 
     await fetch(url(path), options);
 
