@@ -13,6 +13,7 @@ const mapDispatchToProps = dispatch => ({
   },
 
   deleteItem: schedule => {
+    console.log(schedule)
     dispatch(asyncSchedulesDeleteItem(schedule));
     dispatch(currentScheduleCloseDialog());
   },
@@ -31,7 +32,13 @@ const mergeProps = (stateProps, dispatchProps) => ({
   deleteItem: () => {
     const { id } = stateProps.schedule.item;
     dispatchProps.deleteItem(id);
-  }
+  },
+
+  // editItem: () => {
+  //   const { item } = stateProps.schedule;
+  //   dispatchProps.editItem(item)
+  //   console.log(item)
+  // }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(AddScheduleDialog,EditScheduleDialog);

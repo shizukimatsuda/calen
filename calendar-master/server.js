@@ -62,6 +62,22 @@ app
             }
         })
 
+        server.all("/api/EditSchedule", function (req, res) {
+            try {
+                let text = fs.readFileSync("./test.json", "utf8")
+                let textjson = JSON.parse(text)
+                let data = req.body
+                let newSchedules = textjson.filter(s => s.id !== data.id);
+                newSchedules.push(data)
+                let edit = JSON.stringify(newSchedules)
+                fs.writeFileSync("./test.json", edit)
+                res.json(req.body)
+                console.log(req.body)
+            } catch (err) {
+                console.log(err)
+            }
+        })
+
 
         server.listen(port, (err) => {
             if (err) {

@@ -19,7 +19,7 @@ const CurrentScheduleDialog = ({
     closeDialog,
     deleteItem,
     editItem
-}) => {
+}) => { 
     return (
         <Dialog open={isDialogOpen} onClose={closeDialog} maxWidth="xs" fullWidth>
             <DialogActions>
@@ -29,7 +29,7 @@ const CurrentScheduleDialog = ({
                         text-align: right;
                       }
                     `}</style>
-                    <IconButton onClick={()=>editItem()} size="small">
+                    <IconButton onClick={()=>editItem(item)} size="small">
                         <EditOutlinedIcon />
                     </IconButton>
                     <IconButton onClick={deleteItem} size="small">

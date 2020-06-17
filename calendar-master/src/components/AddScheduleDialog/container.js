@@ -12,7 +12,7 @@ const mapDispatchToProps = dispatch => ({
     },
 
     setSchedule: value => {
-        dispatch(addScheduleSetValue(value));
+      dispatch(addScheduleSetValue(value));
     },
 
     saveSchedule: schedule => {

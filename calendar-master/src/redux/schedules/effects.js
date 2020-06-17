@@ -1,5 +1,5 @@
 import { schedulesSetLoading, schedulesFetchItem, schedulesAddItem, schedulesDeleteItem } from "./actions";
-import { get, post, deleteRequest } from "../../services/api";
+import { get, post, deleteRequest, editRequest } from "../../services/api";
 import { formatSchedule } from "../../services/schedule";
 import { ShortTextOutlined, SpeakerNotesOutlined } from "@material-ui/icons";
 
@@ -42,7 +42,6 @@ export const asyncSchedulesDeleteItem = id => async (dispatch, getState) => {
     const currentSchedules = getState().schedules.items;
 
     const body = { "id": id }
-    console.log(id)
   
     await deleteRequest(`DeleteSchedules`, body);
   
@@ -50,3 +49,25 @@ export const asyncSchedulesDeleteItem = id => async (dispatch, getState) => {
     const newSchedules = currentSchedules.filter(s => s.id !== id);
     dispatch(schedulesDeleteItem(newSchedules));
 };
+
+export const asyncSchedulesEditItem = schedule => async (dispatch, getState) => {
+    dispatch(schedulesSetLoading());
+    
+    const currentSchedules = getState().schedules.items;
+    
+    let editid = schedule.id
+
+    const newSchedules = currentSchedules.filter(s => s.id !== editid);
+    console.log(newSchedules)
+
+    dispatch(schedulesDeleteItem(newSchedules));
+
+    const body = {
+        ...schedule, date: schedule.date.toISOString()
+    };
+
+    const result = await editRequest("EditSchedule", body);
+
+    const newSchedule = formatSchedule(result);
+    dispatch(schedulesAddItem(newSchedule));
+}

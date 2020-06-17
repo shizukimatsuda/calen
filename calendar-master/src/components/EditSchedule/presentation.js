@@ -9,12 +9,12 @@ const Title = withStyles({
   root: { marginBottom: 32, fontSize: 22 }
 })(Input);
 
-const EditScheduleDialog = ({ schedule: { form: { title, location, description}, isEditDialogOpen }, closeEditDialog, setSchedule }) => {
+const EditScheduleDialog = ({ schedule: { isEditDialogOpen, newitem }, closeEditDialog, setSchedule,saveSchedule }) => {
   return (
     <Dialog open={isEditDialogOpen} onClose={closeEditDialog} maxWidth="xs" fullWidth>
       <DialogContent>
-        <Title autoFocus fullWidth placeholder={title}
-          value={title}
+        <Title autoFocus fullWidth 
+          defaultValue={newitem.title}
           onChange={e => setSchedule({ title: e.target.value })}
         />
         <Grid container spacing={1} alignItems="center" justify="space-between">
@@ -22,8 +22,8 @@ const EditScheduleDialog = ({ schedule: { form: { title, location, description},
             <LocationOnOutlined />
           </Grid>
           <Grid item xs={10}>
-            <TextField style={spacer} fullWidth placeholder="場所"
-              value={location}
+            <TextField style={spacer} fullWidth 
+              defaultValue={newitem.location}
               onChange={e => setSchedule({ location: e.target.value })}
             />
           </Grid>
@@ -33,15 +33,15 @@ const EditScheduleDialog = ({ schedule: { form: { title, location, description},
             <NotesOutlined />
           </Grid>
           <Grid item xs={10}>
-            <TextField style={spacer} fullWidth placeholder="説明"
-              value={description}
+            <TextField style={spacer} fullWidth 
+              defaultValue={newitem.description}
               onChange={e => setSchedule({ description: e.target.value })}
             />
           </Grid>
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button color="primary" variant="outlined">
+        <Button color="primary" variant="outlined"onClick={saveSchedule}>
           保存
         </Button>
       </DialogActions>

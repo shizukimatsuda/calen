@@ -5,6 +5,7 @@ export const CURRENT_SCHEDULE_CLOSE_DIALOG = "CURRENT_SCHEDULE_CLOSE_DIALOG";
 export const CURRENT_SCHEDULE_EDIT_DIALOG = "CURRENT_SCHEDULE_EDIT_DIALOG"
 export const EDIT_SCHEDULE_CLOSE_DIALOG = "EDIT_SCHEDULE_CLOSE_DIALOG"
 export const CURRENT_SCHEDULE_EDIT_ITEM = "CURRENT_SCHEDULE_EDIT_ITEM"
+export const EDIT_SCHEDULE_SET_VALUE = "EDIT_SCHEDULE_SET_VALUE"
 
 // actions
 export const currentScheduleSetItem = payload => ({
@@ -30,5 +31,10 @@ export const editscheduleCloseDialog = () => ({
 
 export const currentScheduleEditItem = payload => ({
   type: CURRENT_SCHEDULE_EDIT_ITEM,
+  payload
+})
+
+export const editScheduleValue = payload => ({
+  type: EDIT_SCHEDULE_SET_VALUE,
   payload
 })

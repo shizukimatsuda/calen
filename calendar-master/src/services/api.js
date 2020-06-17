@@ -33,3 +33,13 @@ export const deleteRequest = async (path, body) => {
     //204 no Contentが帰ってくるので成功の場合何もreturnしない
     return;
 };
+
+export const editRequest = async (path, body) => {
+    const options = { ...header, method: "POST", body: JSON.stringify(body) };
+
+    const resp = await fetch(url(path), options);
+
+    const result = await resp.json();
+
+    return result;
+};

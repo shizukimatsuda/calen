@@ -25,7 +25,7 @@ const mapDispatchToProps = dispatch => ({
   openCurrentScheduleDialog: (schedule, e) => {
     // 他のイベントが発火するのをキャンセル
     e.stopPropagation();
-
+    
     dispatch(currentScheduleSetItem(schedule));
     dispatch(currentScheduleOpenDialog());
   },

@@ -4,19 +4,20 @@ import {
     CURRENT_SCHEDULE_CLOSE_DIALOG,
     CURRENT_SCHEDULE_EDIT_DIALOG,
     EDIT_SCHEDULE_CLOSE_DIALOG,
-    CURRENT_SCHEDULE_EDIT_ITEM
+    CURRENT_SCHEDULE_EDIT_ITEM,
+    EDIT_SCHEDULE_SET_VALUE
 } from "./actions";
 import dayjs from "dayjs";
 
 const init = {
-    form: {
+    item: null,
+    newitem: {
         id: "",
         title: "",
         description: "",
-        date: dayjs(),
+        date: "",
         location: ""
     },
-    item: null,
     isDialogOpen: false,
     isEditDialogOpen: false
 };
@@ -36,7 +37,9 @@ const currentScheduleReducer = (state = init, action) => {
         case EDIT_SCHEDULE_CLOSE_DIALOG:
             return init;
         case CURRENT_SCHEDULE_EDIT_ITEM:
-            return { ...state, form: payload}
+            return { ...state, newitem: payload }
+        case EDIT_SCHEDULE_SET_VALUE:
+            return { ...state, newitem: { ...state.newitem, ...payload } }
 
         default:
             return state;
