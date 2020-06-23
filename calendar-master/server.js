@@ -72,7 +72,6 @@ app
                 let edit = JSON.stringify(newSchedules)
                 fs.writeFileSync("./test.json", edit)
                 res.json(req.body)
-                console.log(req.body)
             } catch (err) {
                 console.log(err)
             }

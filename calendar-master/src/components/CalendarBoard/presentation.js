@@ -4,13 +4,12 @@ import CalendarElement from "../CalendarElement";
 
 const days = ["日", "月", "火", "水", "木", "金", "土"];
 
-const CalendarBoard = ({ calendar, month, openAddScheduleDialog, openCurrentScheduleDialog, fetchSchedule }) => {
+const CalendarBoard = ({ calendar, month, openAddScheduleDialog, openCurrentScheduleDialog, fetchSchedule, openScheduleList }) => {
 
     useEffect(() => {
         // 初回のみdataを取得する
         fetchSchedule();
     }, []);
-
     return (
         <div className="container">
             <style jsx global>{`
@@ -49,7 +48,8 @@ const CalendarBoard = ({ calendar, month, openAddScheduleDialog, openCurrentSche
                             day={date}
                             month={month}
                             schedules={schedules}
-                            onClickSchedule={openCurrentScheduleDialog}
+                            onClickSchedule={()=>openScheduleList(schedules)}
+                            //onClickSchedule={openCurrentScheduleDialog}
                         />
                     </li>
                 ))};

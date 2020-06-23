@@ -9,11 +9,11 @@ const Title = withStyles({
   root: { marginBottom: 32, fontSize: 22 }
 })(Input);
 
-const EditScheduleDialog = ({ schedule: { isEditDialogOpen, newitem }, closeEditDialog, setSchedule,saveSchedule }) => {
+const EditScheduleDialog = ({ schedule: { isEditDialogOpen, newitem }, closeEditDialog, setSchedule, saveSchedule }) => {
   return (
     <Dialog open={isEditDialogOpen} onClose={closeEditDialog} maxWidth="xs" fullWidth>
       <DialogContent>
-        <Title autoFocus fullWidth 
+        <Title autoFocus fullWidth
           defaultValue={newitem.title}
           onChange={e => setSchedule({ title: e.target.value })}
         />
@@ -22,26 +22,25 @@ const EditScheduleDialog = ({ schedule: { isEditDialogOpen, newitem }, closeEdit
             <LocationOnOutlined />
           </Grid>
           <Grid item xs={10}>
-            <TextField style={spacer} fullWidth 
+            <TextField style={spacer} fullWidth
               defaultValue={newitem.location}
               onChange={e => setSchedule({ location: e.target.value })}
             />
           </Grid>
         </Grid>
         <Grid container spacing={1} alignItems="center" justify="space-between">
-          <Grid item>
-            <NotesOutlined />
-          </Grid>
-          <Grid item xs={10}>
-            <TextField style={spacer} fullWidth 
-              defaultValue={newitem.description}
-              onChange={e => setSchedule({ description: e.target.value })}
-            />
-          </Grid>
+            <input type="radio" name="daytime" value="朝" onChange={e => setSchedule({ radio: e.target.value })} />
+            <span>朝</span>
+            <input type="radio" name="daytime" value="昼" onChange={e => setSchedule({ radio: e.target.value })} />
+            <span>昼</span>
+            <input type="radio" name="daytime" value="間食" onChange={e => setSchedule({ radio: e.target.value })} />
+            <span>間食</span>
+            <input type="radio" name="daytime" value="夜" onChange={e => setSchedule({ radio: e.target.value })} />
+            <span>夜</span>
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button color="primary" variant="outlined"onClick={saveSchedule}>
+        <Button color="primary" variant="outlined" onClick={saveSchedule}>
           保存
         </Button>
       </DialogActions>

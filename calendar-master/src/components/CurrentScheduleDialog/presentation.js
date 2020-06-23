@@ -8,6 +8,7 @@ import {
     Typography
 } from "@material-ui/core";
 import { Close, LocationOnOutlined, NotesOutlined, DeleteOutlineOutlined } from "@material-ui/icons";
+import AccessTimeOutlinedIcon from '@material-ui/icons/AccessTimeOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 
 const spacer = (top, bottom) => ({
@@ -92,7 +93,7 @@ const CurrentScheduleDialog = ({
                                 </Grid>
                             </Grid>
                         )}
-                        {item.description && (
+                        {item.radio && (
                             <Grid
                                 container
                                 spacing={1}
@@ -101,10 +102,10 @@ const CurrentScheduleDialog = ({
                                 style={spacer(0, 4)}
                             >
                                 <Grid item>
-                                    <NotesOutlined />
+                                    <AccessTimeOutlinedIcon />
                                 </Grid>
                                 <Grid item xs={10}>
-                                    <Typography>{item.description}</Typography>
+                                    <Typography>{item.radio}</Typography>
                                 </Grid>
                             </Grid>
                         )}

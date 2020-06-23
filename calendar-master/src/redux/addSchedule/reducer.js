@@ -10,7 +10,7 @@ const init = {
     form: {
         id: "",
         title: "",
-        description: "",
+        radio: "",
         date: dayjs(),
         location: ""
     },

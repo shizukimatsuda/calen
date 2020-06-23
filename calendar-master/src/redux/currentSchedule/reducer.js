@@ -14,7 +14,7 @@ const init = {
     newitem: {
         id: "",
         title: "",
-        description: "",
+        radio: "",
         date: "",
         location: ""
     },

@@ -13,7 +13,7 @@ const Title = withStyles({
     }
 })(Input);
 
-const AddScheduleDialog = ({ schedule: { form: { title, location, description, date }, isDialogOpen, isStartEdit }, closeDialog, setSchedule, saveSchedule, setIsEditStart }) => {
+const AddScheduleDialog = ({ schedule: { form: { title, location, radio, date }, isDialogOpen, isStartEdit }, closeDialog, setSchedule, saveSchedule, setIsEditStart }) => {
 
     const isTitleInvalid = !title && isStartEdit;
 
@@ -32,7 +32,7 @@ const AddScheduleDialog = ({ schedule: { form: { title, location, description, d
                 </div>
             </DialogActions>
             <DialogContent>
-                <Title autoFocus fullWidth placeholder="タイトルと日時を追加"
+                <Title autoFocus fullWidth placeholder="商品名"
                     value={title}
                     onChange={e => setSchedule({ title: e.target.value })}
                     onBlur={setIsEditStart}
@@ -79,15 +79,14 @@ const AddScheduleDialog = ({ schedule: { form: { title, location, description, d
                     </Grid>
                 </Grid>
                 <Grid container spacing={1} alignItems="center" justify="space-between">
-                    <Grid item>
-                        <NotesOutlined />
-                    </Grid>
-                    <Grid item xs={10}>
-                        <TextField style={spacer} fullWidth placeholder="説明を追加"
-                            value={description}
-                            onChange={e => setSchedule({ description: e.target.value })}
-                        />
-                    </Grid>
+                    <input type="radio" name="daytime" value="朝" onChange={e => setSchedule({ radio: e.target.value})} />
+                    <span>朝</span>
+                    <input type="radio" name="daytime" value="昼" onChange={e => setSchedule({ radio: e.target.value})} />
+                    <span>昼</span>
+                    <input type="radio" name="daytime" value="間食" onChange={e => setSchedule({ radio: e.target.value})} />
+                    <span>間食</span>
+                    <input type="radio" name="daytime" value="夜" onChange={e => setSchedule({ radio: e.target.value})} />
+                    <span>夜</span>
                 </Grid>
             </DialogContent>
             <DialogActions>

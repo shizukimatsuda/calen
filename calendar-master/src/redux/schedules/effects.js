@@ -58,7 +58,6 @@ export const asyncSchedulesEditItem = schedule => async (dispatch, getState) => 
     let editid = schedule.id
 
     const newSchedules = currentSchedules.filter(s => s.id !== editid);
-    console.log(newSchedules)
 
     dispatch(schedulesDeleteItem(newSchedules));
 
