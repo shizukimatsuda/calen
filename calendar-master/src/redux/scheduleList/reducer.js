@@ -6,13 +6,13 @@ import {
 
 const init = {
     isListOpen: false,
-    itemlist:{
+    itemlist:[{
         id: "",
         title: "",
         radio: "",
         date:"",
         location: ""
-    }
+    }]
 }
 
 

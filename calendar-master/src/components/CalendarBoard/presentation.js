@@ -49,7 +49,7 @@ const CalendarBoard = ({ calendar, month, openAddScheduleDialog, openCurrentSche
                             month={month}
                             schedules={schedules}
                             onClickSchedule={()=>openScheduleList(schedules)}
-                            //onClickSchedule={openCurrentScheduleDialog}
+                            
                         />
                     </li>
                 ))};
